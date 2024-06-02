@@ -12,7 +12,7 @@ const SendMessage = ({ submit }) => {
 	const handleSignSignature = async () => {
 		try {
 			const res = await axios.post(
-				'https://new-express-project-44a0ct8wt-kiths-projects.vercel.app/sign',
+				'https://new-express-project-tau-five.vercel.app/sign',
 				{
 					data: data.message,
 					privateKey: data.privateKey,
