@@ -11,10 +11,13 @@ const SendMessage = ({ submit }) => {
 
 	const handleSignSignature = async () => {
 		try {
-			const res = await axios.post('http://localhost:3500/sign', {
-				data: data.message,
-				privateKey: data.privateKey,
-			});
+			const res = await axios.post(
+				'https://new-express-project-44a0ct8wt-kiths-projects.vercel.app/sign',
+				{
+					data: data.message,
+					privateKey: data.privateKey,
+				}
+			);
 
 			setData({
 				...data,

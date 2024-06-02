@@ -30,11 +30,14 @@ const ReceiveMessage = ({ receiveData }) => {
 
 	const handleVerifySignature = async () => {
 		try {
-			const res = await axios.post('http://localhost:3500/verify', {
-				data: data.data,
-				publicKey: data.publicKey,
-				signature: data.signature,
-			});
+			const res = await axios.post(
+				'https://new-express-project-44a0ct8wt-kiths-projects.vercel.app/verify',
+				{
+					data: data.data,
+					publicKey: data.publicKey,
+					signature: data.signature,
+				}
+			);
 
 			if (res.data.verify) {
 				handleOpen();

@@ -9,7 +9,7 @@ const GenerateKey = () => {
 	const handleGetKey = async () => {
 		try {
 			const res = await axios.get(
-				'http://localhost:3500/generate-key-pair'
+				'https://new-express-project-44a0ct8wt-kiths-projects.vercel.app/generate-key-pair'
 			);
 			setData(res.data);
 		} catch (error) {
