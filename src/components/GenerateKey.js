@@ -3,18 +3,24 @@ import { Button, Typography } from '@material-tailwind/react';
 import axios from 'axios';
 import PrivateKeyArea from './PrivateKeyArea';
 import PublicKeyArea from './PublicKeyArea';
+import Loading from './Loading';
 
 const GenerateKey = () => {
 	const [data, setData] = useState(null);
+	const [loading, setLoading] = useState(false);
 	const handleGetKey = async () => {
+		setLoading(true);
 		try {
 			const res = await axios.get(
 				'https://new-express-project-tau-five.vercel.app/generate-key-pair'
 			);
 			setData(res.data);
+			setLoading(false);
 		} catch (error) {
 			console.log(error);
+			setLoading(false);
 		}
+		setLoading(false);
 	};
 
 	return (
@@ -37,11 +43,22 @@ const GenerateKey = () => {
 				<PublicKeyArea data={data?.publicKey ? data.publicKey : ''} />
 				<div className="desktop:col-span-2 flex justify-center py-2">
 					<Button
-						className="bg-admin"
+						className="bg-admin relative"
 						size="md"
 						onClick={handleGetKey}
+						disabled={loading}
 					>
-						Generate key pair
+						<span className={loading ? 'opacity-0' : ''}>
+							Generate key pair
+						</span>
+						{loading && (
+							<Loading
+								customStyle={
+									'!min-h-full absolute top-0 left-0'
+								}
+								sizeStyle={'h-6 w-6'}
+							/>
+						)}
 					</Button>
 				</div>
 			</div>

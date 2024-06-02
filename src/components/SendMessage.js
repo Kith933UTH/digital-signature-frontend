@@ -1,6 +1,7 @@
 import { Button, Typography } from '@material-tailwind/react';
 import React, { useState } from 'react';
 import axios from 'axios';
+import Loading from './Loading';
 
 const SendMessage = ({ submit }) => {
 	const [data, setData] = useState({
@@ -8,8 +9,10 @@ const SendMessage = ({ submit }) => {
 		privateKey: '',
 		signature: '',
 	});
+	const [loading, setLoading] = useState(false);
 
 	const handleSignSignature = async () => {
+		setLoading(true);
 		try {
 			const res = await axios.post(
 				'https://new-express-project-tau-five.vercel.app/sign',
@@ -27,6 +30,7 @@ const SendMessage = ({ submit }) => {
 		} catch (error) {
 			console.log(error);
 		}
+		setLoading(false);
 	};
 
 	return (
@@ -60,12 +64,26 @@ const SendMessage = ({ submit }) => {
 
 				<div className="col-span-2 flex justify-center py-2 mb-[9px]">
 					<Button
-						className="bg-admin"
+						className="bg-admin relative"
 						size="md"
 						onClick={handleSignSignature}
-						disabled={data.message === '' || data.privateKey === ''}
+						disabled={
+							data.message === '' ||
+							data.privateKey === '' ||
+							loading
+						}
 					>
-						Compute Signature
+						<span className={loading ? 'opacity-0' : ''}>
+							Compute Signature
+						</span>
+						{loading && (
+							<Loading
+								customStyle={
+									'!min-h-full absolute top-0 left-0'
+								}
+								sizeStyle={'h-6 w-6'}
+							/>
+						)}
 					</Button>
 				</div>
 

@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { SuccessDialog } from './SuccessDialog';
 import { ErrorDialog } from './ErrorDialog';
+import Loading from './Loading';
 
 const ReceiveMessage = ({ receiveData }) => {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(!open);
 	const [openError, setOpenError] = useState(false);
 	const handleOpenError = () => setOpenError(!openError);
+	const [loading, setLoading] = useState(false);
 
 	const [data, setData] = useState({
 		data: '',
@@ -29,6 +31,7 @@ const ReceiveMessage = ({ receiveData }) => {
 	}, [receiveData]);
 
 	const handleVerifySignature = async () => {
+		setLoading(true);
 		try {
 			const res = await axios.post(
 				'https://new-express-project-tau-five.vercel.app/verify',
@@ -47,6 +50,7 @@ const ReceiveMessage = ({ receiveData }) => {
 		} catch (error) {
 			console.log(error);
 		}
+		setLoading(false);
 	};
 
 	return (
@@ -90,16 +94,27 @@ const ReceiveMessage = ({ receiveData }) => {
 				></textarea>
 				<div className="col-span-2 flex justify-center py-2">
 					<Button
-						className="bg-admin"
+						className="bg-admin relative"
 						size="md"
 						onClick={handleVerifySignature}
 						disabled={
 							data.data === '' ||
 							data.publicKey === '' ||
-							data.signature === ''
+							data.signature === '' ||
+							loading
 						}
 					>
-						Verify
+						<span className={loading ? 'opacity-0' : ''}>
+							Verify
+						</span>
+						{loading && (
+							<Loading
+								customStyle={
+									'!min-h-full absolute top-0 left-0'
+								}
+								sizeStyle={'h-6 w-6'}
+							/>
+						)}
 					</Button>
 				</div>
 			</div>
