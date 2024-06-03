@@ -33,8 +33,6 @@ const GenerateKey = () => {
 			</Typography>
 			<Typography variant="paragraph" className="text-base font-normal">
 				You may generate an RSA private key with the help of this tool.
-				Additionally, it will display the public key of a generated or
-				pasted private key.
 			</Typography>
 			<div className="w-full mt-4 grid grid-cols-1 desktop:grid-cols-2 border-[2px] border-solid border-blue-gray-600 rounded-lg overflow-hidden">
 				<PrivateKeyArea
