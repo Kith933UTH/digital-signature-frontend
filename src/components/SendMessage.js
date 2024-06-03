@@ -62,7 +62,7 @@ const SendMessage = ({ submit }) => {
 					value={data.privateKey}
 				></textarea>
 
-				<div className="col-span-2 flex justify-center py-2 mb-[9px]">
+				<div className="col-span-2 flex justify-center py-2 mb-[8px]">
 					<Button
 						className="bg-admin relative"
 						size="md"

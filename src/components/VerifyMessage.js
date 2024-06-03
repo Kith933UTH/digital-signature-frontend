@@ -13,12 +13,12 @@ const VerifyMessage = () => {
 		<div className="flex flex-col">
 			<Typography
 				variant="h3"
-				className="text-admin text-2xl desktop:text-3xl"
+				className="text-admin text-2xl desktop:text-3xl font-bold"
 			>
 				Verify Message
 			</Typography>
 
-			<div className="w-full mt-4 grid desktop:grid-cols-2 border-[2px] border-solid border-blue-gray-600 rounded-lg overflow-hidden">
+			<div className="w-full mt-4 grid desktop:grid-cols-2 border-[2px] border-solid border-blue-gray-600 rounded-lg overflow-hidden bg-gray-300">
 				<SendMessage submit={handleSendMessage} />
 				<hr className="my-4 border-blue-gray-600 desktop:hidden" />
 				<ReceiveMessage receiveData={receiveData} />

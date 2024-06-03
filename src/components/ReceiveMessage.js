@@ -54,7 +54,7 @@ const ReceiveMessage = ({ receiveData }) => {
 	};
 
 	return (
-		<div className="flex flex-col desktop:border-r-[1px] border-solid border-blue-gray-600">
+		<div className="flex flex-col ">
 			<div className="w-full p-4">
 				<Typography className="text-base font-semibold">
 					Received Message

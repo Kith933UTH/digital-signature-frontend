@@ -27,7 +27,7 @@ const GenerateKey = () => {
 		<div className="flex flex-col mb-12">
 			<Typography
 				variant="h3"
-				className="text-admin text-2xl desktop:text-3xl"
+				className="text-admin text-2xl desktop:text-3xl font-bold"
 			>
 				RSA Key Generator
 			</Typography>
